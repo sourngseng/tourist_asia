@@ -1,6 +1,4 @@
-
 @extends('front_master')
-
 @section('content')
 <!-- Navbar & Hero Start -->       
     <div class="container-fluid position-relative p-0">
@@ -14,10 +12,7 @@
             </button>
             @include('partials.navbar')
         </nav>
-
         @include('partials.banner_page')
-
-
     </div>
 
 <!-- Navbar & Hero End -->
@@ -25,8 +20,6 @@
 <!-- About Start -->
         @include('partials.about')
 <!-- About End -->
-
-
 
 <!-- Team Start -->
     @include('partials.our_guides')

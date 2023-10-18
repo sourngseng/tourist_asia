@@ -20,9 +20,6 @@
     </div>
 <!-- Navbar & Hero End -->
 
-<!-- About Start -->
-        @include('partials.services')
-<!-- About End -->
 
 <!-- Team Start -->
     @include('partials.our_guides')

@@ -21,11 +21,13 @@
 <!-- Navbar & Hero End -->
 
 <!-- About Start -->
-        @include('partials.services')
+        @include('partials.packages')
 <!-- About End -->
 
 <!-- Team Start -->
-    @include('partials.our_guides')
+    @include('partials.booking')
 <!-- Team End -->
     
+    @include('partials.process')
+
 @endsection
