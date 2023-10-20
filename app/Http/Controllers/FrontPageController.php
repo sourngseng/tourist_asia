@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Service;
 use Illuminate\Http\Request;
 
 class FrontPageController extends Controller
 {
     public function index()
     {
-        return view('front_home');
+        $data['services']=Service::get();
+        // dd($data['services']);
+        return view('front_home',$data);
     }
 
     public function about(){
@@ -17,6 +20,7 @@ class FrontPageController extends Controller
     }
     public function services(){
         $data['title']="Services";
+        $data['services']=Service::get();
         return view('front-services',$data);
     }
 

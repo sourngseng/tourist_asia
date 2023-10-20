@@ -33,7 +33,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+            {{-- <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="package-item">
                     <div class="overflow-hidden">
                         <img class="img-fluid" src="{{asset('travel_agency')}}/img/package-2.jpg" alt="">
@@ -86,7 +86,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

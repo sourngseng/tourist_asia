@@ -22,6 +22,7 @@
                     </div>
                 </div>
             </div>
+{{--             
             <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
                 <div class="team-item">
                     <div class="overflow-hidden">
@@ -69,7 +70,7 @@
                         <small>Designation</small>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </div>

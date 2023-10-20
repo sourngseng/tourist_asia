@@ -15,7 +15,6 @@
 
             @include('partials.search_home')
 
-
         </div>
 
     <!-- Navbar & Hero End -->
