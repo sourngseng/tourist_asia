@@ -2,17 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Service;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
+use Log;
 
-class ServiceController extends Controller
+class ProductController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
-        return Service::select('id','title','description','image','status')->get();
+        return Product::select('id','title','description','image')->get();
     }
 
     /**
@@ -36,16 +39,16 @@ class ServiceController extends Controller
 
         try{
             $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
-            Storage::disk('public')->putFileAs('service', $request->image,$imageName);
-            Service::create($request->post()+['image'=>$imageName]);
+            Storage::disk('public')->putFileAs('product/image', $request->image,$imageName);
+            Product::create($request->post()+['image'=>$imageName]);
 
             return response()->json([
-                'message'=>'Service Created Successfully!!'
+                'message'=>'Product Created Successfully!!'
             ]);
         }catch(\Exception $e){
             \Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while creating a service!!'
+                'message'=>'Something goes wrong while creating a product!!'
             ],500);
         }
     }
@@ -53,17 +56,17 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show(Product $product)
     {
         return response()->json([
-            'service'=>$service
+            'product'=>$product
         ]);
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Service $service)
+    public function edit(Product $product)
     {
         //
     }
@@ -71,7 +74,7 @@ class ServiceController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Service $service)
+    public function update(Request $request, Product $product)
     {
         $request->validate([
             'title'=>'required',
@@ -81,32 +84,32 @@ class ServiceController extends Controller
 
         try{
 
-            $service->fill($request->post())->update();
+            $product->fill($request->post())->update();
 
             if($request->hasFile('image')){
 
                 // remove old image
-                if($service->image){
-                    $exists = Storage::disk('public')->exists("service/{$service->image}");
+                if($product->image){
+                    $exists = Storage::disk('public')->exists("product/image/{$product->image}");
                     if($exists){
-                        Storage::disk('public')->delete("service/{$service->image}");
+                        Storage::disk('public')->delete("product/image/{$product->image}");
                     }
                 }
 
                 $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
-                Storage::disk('public')->putFileAs('service', $request->image,$imageName);
-                $service->image = $imageName;
-                $service->save();
+                Storage::disk('public')->putFileAs('product/image', $request->image,$imageName);
+                $product->image = $imageName;
+                $product->save();
             }
 
             return response()->json([
-                'message'=>'Service Updated Successfully!!'
+                'message'=>'Product Updated Successfully!!'
             ]);
 
         }catch(\Exception $e){
             Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while updating a service!!'
+                'message'=>'Something goes wrong while updating a product!!'
             ],500);
         }
     }
@@ -114,26 +117,26 @@ class ServiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service)
+    public function destroy(Product $product)
     {
         try {
-                if($service->image){
-                    $exists = Storage::disk('public')->exists("service/{$service->image}");
+                if($product->image){
+                    $exists = Storage::disk('public')->exists("product/image/{$product->image}");
                     if($exists){
-                        Storage::disk('public')->delete("service/{$service->image}");
+                        Storage::disk('public')->delete("product/image/{$product->image}");
                     }
                 }
 
-                $service->delete();
+                $product->delete();
 
                 return response()->json([
-                    'message'=>'Service Deleted Successfully!!'
+                    'message'=>'Product Deleted Successfully!!'
                 ]);
                 
             } catch (\Exception $e) {
                 \Log::error($e->getMessage());
                 return response()->json([
-                    'message'=>'Something goes wrong while deleting a service!!'
+                    'message'=>'Something goes wrong while deleting a product!!'
                 ]);
             }
     }

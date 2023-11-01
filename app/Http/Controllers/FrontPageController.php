@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Guide;
 use App\Models\Service;
 use Illuminate\Http\Request;
 
@@ -10,17 +11,20 @@ class FrontPageController extends Controller
     public function index()
     {
         $data['services']=Service::get();
+        $data['guides']=Guide::where('status','=',true)->get();
         // dd($data['services']);
         return view('front_home',$data);
     }
 
     public function about(){
         $data['title']="About Us";
+        $data['guides']=Guide::where('status','=',true)->get();
         return view('front-about',$data);
     }
     public function services(){
         $data['title']="Services";
         $data['services']=Service::get();
+        $data['guides']=Guide::where('status','=',true)->get();
         return view('front-services',$data);
     }
 
@@ -31,11 +35,14 @@ class FrontPageController extends Controller
 
     public function destination(){
         $data['title']="Our destination";
+        $data['services']=Service::get();
         return view('front-destination',$data);
     }
 
     public function booking(){
         $data['title']="Our booking";
+        $data['services']=Service::get();
+        $data['guides']=Guide::where('status','=',true)->get();
         return view('front-booking',$data);
     }
 
@@ -50,7 +57,8 @@ class FrontPageController extends Controller
     }
 
     public function Contact(){
-        $data['title']="Our Contact";
+        $data['title']="Our Contact";$data['services']=Service::get();
+        $data['guides']=Guide::where('status','=',true)->get();
         return view('front-contact',$data);
     }
 }
