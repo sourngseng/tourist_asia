@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,4 +50,20 @@ Route::prefix("posts")->group(function(){
     Route::get('/example1',[PostController::class, 'example1']);
     Route::get('/example2/{id}',[PostController::class, 'example2']);
 
+});
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('admin-sample',function(){
+    return view('layouts.admin_app');
+});
+
+
+
+//for switching language route
+Route::get('/lang/{locale}', function ($locale) {
+	Session::put('locale', $locale);
+	return redirect()->back();
 });
