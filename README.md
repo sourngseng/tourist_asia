@@ -25,10 +25,21 @@
 
 ## Reference Document
 
--[Phone SMS Laravel](https://www.tutsmake.com/laravel-8-send-sms-to-mobile-with-nexmo-example/)
+-   [Phone SMS Laravel](https://www.tutsmake.com/laravel-8-send-sms-to-mobile-with-nexmo-example/)
 
 **Installation**
 
 ```
 composer require nexmo/client
 ```
+
+**Create Route**
+
+```
+use App\Http\Controllers\NexmoSMSController;
+Route::get('send-sms', [NexmoSMSController::class, 'index']);
+```
+
+**Website**
+
+-   https://dashboard.nexmo.com/getting-started/sms
