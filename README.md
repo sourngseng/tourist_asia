@@ -26,11 +26,20 @@
 ## Reference Document
 
 -   [Phone SMS Laravel](https://www.tutsmake.com/laravel-8-send-sms-to-mobile-with-nexmo-example/)
+-   [Khmer Date](https://github.com/phannaly/php-datetime-khmer)
+-   **How to use Date Khmer**
+
+```
+{{ $flag=="kh"?KhmerDateTime\KhmerDateTime::parse(Auth::user()->created_at)->fromNow(false)
+                            : Auth::user()->created_at->diffForHumans()}}
+```
 
 **Installation**
 
 ```
 composer require nexmo/client
+or
+composer require laravel/nexmo-notification-channel --with-dependencies
 ```
 
 **Create Route**

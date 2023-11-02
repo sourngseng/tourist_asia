@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ config('app.name', 'Admin Agency') }}</title>
+    <title>@yield('title','Login System as ')</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -78,7 +78,7 @@
     <!-- AdminLTE App -->
     <script src="{{ asset('admin_assets') }}/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
-    <script src="{{ asset('admin_assets') }}/dist/js/demo.js"></script>
+    {{-- <script src="{{ asset('admin_assets') }}/dist/js/demo.js"></script> --}}
 </body>
 
 </html>

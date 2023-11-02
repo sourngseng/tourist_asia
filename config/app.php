@@ -70,7 +70,8 @@ return [
     |
     */
 
-    'timezone' => 'UTC',
+    // 'timezone' => 'Asia/Phnom_Penh',
+    'timezone' => env('APP_TIMEZONE', 'Asia/Phnom_Penh'),
 
     /*
     |--------------------------------------------------------------------------

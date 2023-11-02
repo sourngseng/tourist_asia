@@ -1,17 +1,20 @@
 {{-- @extends('layouts.app') --}}
 @extends('layouts.admin_app')
+@section('title')
+{{ Auth::user()->name }} | Login System
+@endsection
 
 @push('content_header')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Legacy User Menu</h1>
+                <h1>{{ trans('global.dashboard') }} {{ Auth::user()->name }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">Legacy User Menu</li>
+                    <li class="breadcrumb-item"><a href="#">{{ trans('global.home') }}</a></li>
+                    <li class="breadcrumb-item active">{{ Auth::user()->name }}</li>
                 </ol>
             </div>
         </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Session;
+use App\Http\Controllers\NotificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,9 +62,14 @@ Route::get('admin-sample',function(){
 });
 
 
+Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);
 
 //for switching language route
 Route::get('/lang/{locale}', function ($locale) {
 	Session::put('locale', $locale);
 	return redirect()->back();
+});
+
+Route::get('auth_sample',function(){
+    return view('auth.auth_master');
 });
