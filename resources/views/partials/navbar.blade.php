@@ -31,16 +31,16 @@
             class="nav-item nav-link {{ (request()->is('contact')) ? 'active' : '' }}">{{ trans('global.contacts')
             }}</a>
         @guest
-        {{-- <a href="{{ route('register') }}" class="btn btn-primary rounded-pill py-2 px-4">Register</a> --}}
+
         @if (Route::has('login'))
         <li class="nav-item">
-            <a class="btn btn-primary rounded-pill py-2 px-4" href="{{ route('login') }}">{{ __('Login') }}</a>
+            <a class="nav-link" href="{{ route('login') }}">{{ trans('global.login') }}</a>
         </li>
         @endif
 
         @if (Route::has('register'))
         <li class="nav-item">
-            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+            <a class="nav-link" href="{{ route('register') }}">{{ trans('global.register') }}</a>
         </li>
         @endif
         @else
@@ -51,6 +51,8 @@
             </a>
 
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('admin.home') }}">Profile</a>
+
                 <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                              document.getElementById('logout-form').submit();">
                     {{ trans('global.logout') }}

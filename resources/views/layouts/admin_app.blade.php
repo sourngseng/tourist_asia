@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="{{ asset('admin_assets') }}/dist/css/adminlte.min.css">
     <!-- flag-icon-css -->
     <link rel="stylesheet" href="{{ asset('admin_assets') }}/plugins/flag-icon-css/css/flag-icon.min.css">
+    @stack('styles')
     <style>
         body {
             font-family: Hanuman, 'Times New Roman';
@@ -45,9 +46,7 @@
 
             <!-- Main content -->
             <section class="content">
-
                 @yield('content')
-
             </section>
             <!-- /.content -->
         </div>
@@ -63,11 +62,7 @@
             reserved.
         </footer>
 
-        <!-- Control Sidebar -->
-        <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-        </aside>
-        <!-- /.control-sidebar -->
+
     </div>
     <!-- ./wrapper -->
 
@@ -79,6 +74,7 @@
     <script src="{{ asset('admin_assets') }}/dist/js/adminlte.min.js"></script>
     <!-- AdminLTE for demo purposes -->
     {{-- <script src="{{ asset('admin_assets') }}/dist/js/demo.js"></script> --}}
+    @stack('scripts')
 </body>
 
 </html>
