@@ -157,17 +157,10 @@
                     <img src="{{ asset('admin_assets') }}/dist/img/user2-160x160.jpg" class="img-circle elevation-2"
                         alt="User Image">
                     <p>
-                        <?php
-                            // use KhmerDateTime\KhmerDateTime;
-                            // $dateTime = KhmerDateTime\KhmerDateTime::parse(Auth::user()->created_at)->format("LLT");
-                        ?>
                         {{ Auth::user()->name }}
-                        {{-- <small>Member since {{ Auth::user()->created_at->diffForHumans() }}</small> --}}
                         <small>Member since
                             {{ $flag=="kh"?KhmerDateTime\KhmerDateTime::parse(Auth::user()->created_at)->fromNow(false)
                             : Auth::user()->created_at->diffForHumans()}}</small>
-                        {{-- {{KhmerDateTime\KhmerDateTime::parse(Auth::user()->created_at)->fromNow(false) }} --}}
-
                     </p>
                 </li>
                 <!-- Menu Body -->
@@ -188,7 +181,6 @@
                 <!-- Menu Footer-->
                 <li class="user-footer">
                     <a href="#" class="btn btn-default btn-flat">Profile</a>
-                    {{-- <a href="#" class="btn btn-default btn-flat float-right">Sign out</a> --}}
 
                     <a class="btn btn-default btn-flat float-right" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
