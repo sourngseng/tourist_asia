@@ -22,3 +22,13 @@
 ```
  git clone https://github.com/sourngseng/tourist_asia.git
 ```
+
+## Reference Document
+
+-[Phone SMS Laravel](https://www.tutsmake.com/laravel-8-send-sms-to-mobile-with-nexmo-example/)
+
+**Installation**
+
+```
+composer require nexmo/client
+```
