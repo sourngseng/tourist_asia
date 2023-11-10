@@ -3,20 +3,59 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Post;
+use Illuminate\Http\JsonResponse;
 
 class PostController extends Controller
 {
 
-    public function index(){
-        // return view('post.index');
-        return "This is an index function of controller!";
+    public function index(): JsonResponse
+    {
+        $posts = Post::all()->toArray();
+        return response()->json($posts);
     }
 
-    public function example1(){
-        return "This is an example 1 of controller post!";
+    public function create()
+    {
     }
-    public function example2($id){
-        return "This is an example 1 of controller post! $id";
+
+    public function store(Request $request) : JsonResponse
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]);
+
+        $post = Post::create($validated);
+        return response()->json(['status' => 'Post created.']);
+    }
+
+    public function show(Post $post)
+    {
+    }
+
+    public function edit(Post $post) : JsonResponse
+    {
+        $record = Post::find($post->id)->toArray();
+        return response()->json($record);
+    }
+
+    public function update(Request $request, Post $post) : JsonResponse
+    {
+        $validated = $request->validate([
+            'title' => 'required',
+            'content' => 'required',
+        ]); 
+
+        $post->update($validated);
+
+        return response()->json(['status' => 'Post updated.']);
+    }
+
+    public function destroy(Post $post) : JsonResponse
+    {
+        $post->delete();
+        return response()->json(['status' => 'Post deleted.']);
     }
 
 

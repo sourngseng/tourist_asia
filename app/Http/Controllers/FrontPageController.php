@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Guide;
+
 use App\Models\Service;
 use Illuminate\Http\Request;
+use App\Models\Guide;
 
 class FrontPageController extends Controller
 {
