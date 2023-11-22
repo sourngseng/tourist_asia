@@ -13,8 +13,9 @@ class ServiceController extends Controller
     public function index()
     {
         // return Service::select('id','title','description','image','status')->get();
+        $data['services']=Service::get();
 
-        return view('admin.services.list');
+        return view('admin.services.list',$data);
     }
 
     /**

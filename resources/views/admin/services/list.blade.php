@@ -47,33 +47,24 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach ($services as $row)
                 <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 4.0
+                    <td>{{ $row->id }}</td>
+                    <td>
+                        <?php echo $row->title ?>
                     </td>
-                    <td>Win 95+</td>
-                    <td> 4</td>
-                    <td>X</td>
-                </tr>
-                <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 5.0
+                    <td>{{ $row->description }}</td>
+                    <td>
+                        <img class="info-box-icon" height="32" src="{{ url('storage/service/'.$row->image) }}"
+                            alt="{{ $row->image }}">
                     </td>
-                    <td>Win 95+</td>
-                    <td>5</td>
-                    <td>C</td>
-                </tr>
-                <tr>
-                    <td>Trident</td>
-                    <td>Internet
-                        Explorer 5.5
+                    <td class="align-middle">
+                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
+                        <a href="#" class="btn btn-success"> <i class="fa fa-edit"></i></a>
+                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </td>
-                    <td>Win 95+</td>
-                    <td>5.5</td>
-                    <td>A</td>
                 </tr>
+                @endforeach
 
             </tbody>
             <tfoot>
