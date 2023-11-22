@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\ServiceController;
 use App\Models\Service;
 
 /*
@@ -63,7 +64,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('admin-sample',function(){
     // return view('layouts.admin_app');
     $data['services']=Service::get();
-    return view('admin.services.list',$data);
+    return view('admin.services.list_sample',$data);
 });
 
 
@@ -78,3 +79,9 @@ Route::get('/lang/{locale}', function ($locale) {
 Route::get('auth_sample',function(){
     return view('auth.auth_master');
 });
+
+
+
+
+
+Route::get('admin/service',[ServiceController::class,'index'])->name('admin.service');

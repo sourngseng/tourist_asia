@@ -12,7 +12,9 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        return Service::select('id','title','description','image','status')->get();
+        // return Service::select('id','title','description','image','status')->get();
+
+        return view('admin.services.list');
     }
 
     /**
