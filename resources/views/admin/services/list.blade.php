@@ -30,7 +30,7 @@
     <div class="card-header">
         <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.services') }}</h3>
 
-        <a class="btn btn-primary float-right">
+        <a class="btn btn-primary float-right" href="{{ route('service.create') }}">
             <i class="fas fa-plus"></i> {{ trans('global.add') }}
         </a>
     </div>
@@ -60,7 +60,7 @@
                     </td>
                     <td class="align-middle">
                         <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-                        <a href="#" class="btn btn-success"> <i class="fa fa-edit"></i></a>
+                        <a href="{{ route('service.create') }}" class="btn btn-success"> <i class="fa fa-edit"></i></a>
                         <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
                     </td>
                 </tr>

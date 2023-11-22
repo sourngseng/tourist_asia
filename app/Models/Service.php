@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     use HasFactory;
-    protected $fillable = ['title', 'description', 'image','image_icon','status'];
+    // protected $fillable = ['title', 'description', 'image','image_icon','status'];
+    protected $guarded = [];
+
+    protected $casts = [
+        'status' => 'boolean',
+        // 'is_place' => 'boolean',
+    ];
 
 }

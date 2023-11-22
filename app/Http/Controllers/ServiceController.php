@@ -6,7 +6,7 @@ use App\Models\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Log;
+use Log;
 
 class ServiceController extends Controller
 {
@@ -23,7 +23,7 @@ class ServiceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.services.create');
     }
 
     /**
@@ -34,21 +34,27 @@ class ServiceController extends Controller
         $request->validate([
             'title'=>'required',
             'description'=>'required',
-            'image'=>'required|image'
+            'image'=>'required|image',            
         ]);
-
-        try{
+       
+        try{            
+            
             $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('service', $request->image,$imageName);
-            Service::create($request->post()+['image'=>$imageName]);
-
-            return response()->json([
-                'message'=>'Service Created Successfully!!'
-            ]);
+            $AllData=[
+                'title'=>$request->title,
+                'description'=>$request->description,
+                'status'=>$request->status=='on'?true:false,
+                'image' =>$imageName
+            ];                  
+            Service::create($AllData);            
+         
+            return redirect()->route('admin.service')->with('success','Service has been created successfully.');
         }catch(\Exception $e){
             \Log::error($e->getMessage());
             return response()->json([
-                'message'=>'Something goes wrong while creating a service!!'
+                // 'message'=>'Something goes wrong while creating a service!!'
+                'message'=>$e->getMessage()
             ],500);
         }
     }

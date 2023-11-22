@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Session;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ServiceController;
 use App\Models\Service;
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -57,7 +59,31 @@ Route::prefix("posts")->group(function(){
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// All Admin Users Route List
+Route::middleware(['auth','user-access:admin'])->group(function(){    
+    Route::prefix("admin")->group(function(){
+        Route::get('home', [HomeController::class, 'index'])->name('home');
+        // Route::get('service',[ServiceController::class,'index'])->name('admin.service');
+        // Route::get('service/create',[ServiceController::class,'create'])->name('admin.service.create');
+        // Route::post('service/store',[ServiceController::class,'store'])->name('admin.service.store');    
+        Route::resource('service',ServiceController::class);
+    });
+});
+
+
+// All Normal Users Routes List
+Route::middleware(['auth','user-access:user'])->group(function(){
+    Route::get('/home',[HomeController::class,'index'])->name('home');
+});
+
+
+// All Manager Route List
+
+Route::middleware(['auth','user-access:manager'])->group(function(){
+    Route::get('/manager/home',[HomeController::class,'managerHome'])->name('manager.home');
+});
+
 
 
 
@@ -65,6 +91,11 @@ Route::get('admin-sample',function(){
     // return view('layouts.admin_app');
     $data['services']=Service::get();
     return view('admin.services.list_sample',$data);
+});
+Route::get('admin-create',function(){
+    // return view('layouts.admin_app');
+    $data['services']=Service::get();
+    return view('admin.sample_create_edit',$data);
 });
 
 
@@ -84,4 +115,3 @@ Route::get('auth_sample',function(){
 
 
 
-Route::get('admin/service',[ServiceController::class,'index'])->name('admin.service');
