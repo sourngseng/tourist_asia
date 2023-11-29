@@ -8,6 +8,7 @@ use App\Http\Controllers\ServiceController;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\PackageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +75,7 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
         // Route::get('service/create',[ServiceController::class,'create'])->name('admin.service.create');
         // Route::post('service/store',[ServiceController::class,'store'])->name('admin.service.store');    
         Route::resource('service',ServiceController::class);
+        Route::resource('package',PackageController::class);
     });
 });
 

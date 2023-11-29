@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Service;
 use Illuminate\Http\Request;
 use App\Models\Guide;
+use App\Models\Package;
 
 class FrontPageController extends Controller
 {
@@ -13,6 +14,7 @@ class FrontPageController extends Controller
     {
         $data['services']=Service::get();
         $data['guides']=Guide::where('status','=',true)->get();
+        $data['packages']=Package::where('status','=',true)->get();
         // dd($data['services']);
         return view('front_home',$data);
     }
@@ -31,6 +33,7 @@ class FrontPageController extends Controller
 
     public function packages(){
         $data['title']="Our Packages";
+        $data['packages']=Package::where('status','=',true)->get();
         return view('front-packages',$data);
     }
 
