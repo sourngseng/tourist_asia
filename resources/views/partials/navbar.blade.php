@@ -1,7 +1,7 @@
 <div class="collapse navbar-collapse" id="navbarCollapse">
     <div class="navbar-nav ms-auto py-0">
         <a href="{{ route('front.home') }}" class="nav-item nav-link {{ (request()->is('/')) ? 'active' : '' }}">{{
-            trans('menu.home') }}</a>
+            trans('menu.home') }} </a>
         <a href="{{ route('front.about') }}" class="nav-item nav-link {{ (request()->is('about')) ? 'active' : '' }}">{{
             trans('About') }}</a>
         <a href="{{ route('front.services') }}"

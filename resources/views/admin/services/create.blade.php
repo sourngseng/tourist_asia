@@ -131,7 +131,6 @@
         $(this).bootstrapSwitch('state', $(this).prop('checked'));
       })
   
-    })
-  
+    })  
 </script>
 @endpush

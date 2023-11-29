@@ -49,7 +49,7 @@ class ServiceController extends Controller
             ];                  
             Service::create($AllData);            
          
-            return redirect()->route('admin.service')->with('success','Service has been created successfully.');
+            return redirect()->route('service.index')->with('success','Service has been created successfully.');
         }catch(\Exception $e){
             \Log::error($e->getMessage());
             return response()->json([
@@ -74,7 +74,9 @@ class ServiceController extends Controller
      */
     public function edit(Service $service)
     {
-        //
+        // dd($service->id);
+        $data['service']=Service::findOrFail($service->id);
+        return view('admin.services.edit',$data);
     }
 
     /**
@@ -88,12 +90,9 @@ class ServiceController extends Controller
             'image'=>'nullable'
         ]);
 
-        try{
-
-            $service->fill($request->post())->update();
-
+        try{          
+            $service=Service::findOrFail($service->id);
             if($request->hasFile('image')){
-
                 // remove old image
                 if($service->image){
                     $exists = Storage::disk('public')->exists("service/{$service->image}");
@@ -104,14 +103,19 @@ class ServiceController extends Controller
 
                 $imageName = Str::random().'.'.$request->image->getClientOriginalExtension();
                 Storage::disk('public')->putFileAs('service', $request->image,$imageName);
+                $service->title=$request->title;
+                $service->description=$request->description;
+                $service->status=$request->status=='on'?true:false;
                 $service->image = $imageName;
                 $service->save();
-            }
-
-            return response()->json([
-                'message'=>'Service Updated Successfully!!'
-            ]);
-
+            }else{
+                $service->title=$request->title;
+                $service->description=$request->description;
+                $service->status=$request->status=='on'?true:false;
+                $service->image = $request->old_image;
+                $service->save();
+            }           
+            return redirect()->route('service.index')->with('success','Service updated successfully');
         }catch(\Exception $e){
             Log::error($e->getMessage());
             return response()->json([
@@ -135,9 +139,11 @@ class ServiceController extends Controller
 
                 $service->delete();
 
-                return response()->json([
-                    'message'=>'Service Deleted Successfully!!'
-                ]);
+                // return response()->json([
+                //     'message'=>'Service Deleted Successfully!!'
+                // ]);
+
+                return redirect()->route('service.index')->with('success','Service updated successfully');
                 
             } catch (\Exception $e) {
                 \Log::error($e->getMessage());

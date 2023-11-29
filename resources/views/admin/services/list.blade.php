@@ -1,4 +1,7 @@
 @extends('layouts.admin_app')
+@section('title')
+Service Management
+@endsection
 @push('styles')
 <!-- DataTables -->
 <link rel="stylesheet" href="{{ asset('admin_assets') }}/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
@@ -59,9 +62,16 @@
                             alt="{{ $row->image }}">
                     </td>
                     <td class="align-middle">
-                        <a href="#" class="btn btn-primary"> <i class="fa fa-eye"></i></a>
-                        <a href="{{ route('service.create') }}" class="btn btn-success"> <i class="fa fa-edit"></i></a>
-                        <button type="button" class="btn btn-danger"><i class="fa fa-trash"></i></button>
+                        <form action="{{ route('service.destroy',$row->id) }}" method="POST">
+                            <a class="btn btn-info" href="{{ route('service.show',$row->id) }}"><i
+                                    class="fa fa-eye"></i></a>
+                            <a class="btn btn-primary" href="{{ route('service.edit',$row->id) }}"><i
+                                    class="fa fa-edit"></i></a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger" show_confirm" data-toggle="tooltip"
+                                title='Delete'><i class="fa fa-trash"></i></button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -99,6 +109,8 @@
 <script src="{{ asset('admin_assets') }}/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
 <script src="{{ asset('admin_assets') }}/plugins/datatables-buttons/js/buttons.print.min.js"></script>
 <script src="{{ asset('admin_assets') }}/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
 <script>
     $(function () {
         $("#data_table").DataTable({
@@ -114,6 +126,29 @@
             "autoWidth": false,
             "responsive": true,
         });
+
+
         });
+</script>
+
+<script type="text/javascript">
+    $('.show_confirm').click(function(event) {
+         var form =  $(this).closest("form");
+         var name = $(this).data("name");
+         event.preventDefault();
+         swal({
+             title: `Are you sure you want to delete this record?`,
+             text: "If you delete this, it will be gone forever.",
+             icon: "warning",
+             buttons: true,
+             dangerMode: true,
+         })
+         .then((willDelete) => {
+           if (willDelete) {
+             form.submit();
+           }
+         });
+     });
+ 
 </script>
 @endpush

@@ -24,6 +24,12 @@ use App\Http\Controllers\HomeController;
 //     return view('front-end');
 // });
 
+//for switching language route
+Route::get('/lang/{locale}', function ($locale) {
+	Session::put('locale', $locale);
+	return redirect()->back();
+});
+
 
 
 
@@ -101,15 +107,12 @@ Route::get('admin-create',function(){
 
 Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);
 
-//for switching language route
-Route::get('/lang/{locale}', function ($locale) {
-	Session::put('locale', $locale);
-	return redirect()->back();
-});
 
 Route::get('auth_sample',function(){
     return view('auth.auth_master');
 });
+
+
 
 
 
