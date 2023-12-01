@@ -50,7 +50,8 @@
                 </li>
                 {{-- <i class="fa-solid fa-gift"></i> --}}
                 <li class="nav-item">
-                    <a href="{{ route('admin.home') }}" class="nav-link">
+                    <a href="{{ route('service.index') }}"
+                        class="nav-link {{ (request()->is('admin/service')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-cog"></i>
                         <p>
                             {{trans('menu.manage')}} {{trans('menu.services')}}
@@ -58,7 +59,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('admin.home') }}" class="nav-link">
+                    <a href="{{ route('package.index') }}"
+                        class="nav-link {{ (request()->is('admin/package')) ? 'active' : '' }}">
                         <i class="nav-icon fas fa-gift"></i>
                         <p>
                             {{trans('menu.manage')}} {{trans('menu.packages')}}
