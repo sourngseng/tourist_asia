@@ -1,11 +1,13 @@
 @extends('front_master')
+
 @push('banner_page')
 <div class="col-lg-10 pt-lg-5 mt-lg-5 text-center">
     <h1 class="display-3 text-white animated slideInDown">{{$title}}</h1>
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb justify-content-center">
             <li class="breadcrumb-item"><a href="{{ route('front.home') }}">{{ trans('menu.home') }}</a></li>
-            <li class="breadcrumb-item text-white active" aria-current="page">{{$title}}</li>
+            <li class="breadcrumb-item"><a href="{{ route('front.packages') }}">{{ trans('menu.packages') }}</a></li>
+            <li class="breadcrumb-item text-white active" aria-current="page">{{$package->title}}</li>
         </ol>
     </nav>
 </div>
@@ -23,19 +25,16 @@
         </button>
         @include('partials.navbar')
     </nav>
-
     @include('partials.banner_page')
-
-
 </div>
+
 <!-- Navbar & Hero End -->
 
 <!-- About Start -->
-@include('partials.services')
+@include('partials.package_detail')
 <!-- About End -->
 
 <!-- Team Start -->
-@include('partials.our_guides')
+{{-- @include('partials.our_guides') --}}
 <!-- Team End -->
-
 @endsection

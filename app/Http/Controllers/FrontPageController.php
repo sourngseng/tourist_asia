@@ -36,6 +36,12 @@ class FrontPageController extends Controller
         $data['packages']=Package::where('status','=',true)->get();
         return view('front-packages',$data);
     }
+    public function packages_detail($slug){
+        $data['title']="Our Packages";
+        $data['package']=Package::where('slug','=',$slug)->first();
+
+        return view('front-package-detail',$data);
+    }
 
     public function destination(){
         $data['title']="Our destination";
