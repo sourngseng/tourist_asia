@@ -22,19 +22,18 @@
 <link rel="stylesheet" href="{{ asset('admin_assets') }}/dist/css/adminlte.min.css">
 {{-- Summer Note --}}
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-
 @endpush
 @push('content_header')
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('global.create') }} {{ trans('menu.services') }}</h1>
+                <h1>{{ trans('global.edit') }} {{ trans('menu.packages') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">Home</a></li>
-                    <li class="breadcrumb-item active">{{ trans('global.create') }} {{ trans('menu.services') }}</li>
+                    <li class="breadcrumb-item active">{{ trans('global.edit') }} {{ trans('menu.packages') }}</li>
                 </ol>
             </div>
         </div>
@@ -44,23 +43,64 @@
 
 @section('content')
 
-<form action="{{ route('service.update',$service->id)}}" method="POST" enctype="multipart/form-data">
+<form action="{{ route('package.update',$package->id)}}" method="POST" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="row">
         <div class="col-md-8">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h4 class="float-left">{{ trans('global.create') }} {{ trans('menu.services') }}</h4>
+                    <h4 class="float-left">{{ trans('global.edit') }} {{ trans('menu.packages') }}</h4>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <input name="title" value="{{ $service->title }}" class="form-control form-control-lg" type="text"
-                        placeholder="Service Title">
-                    <br>
-                    <input name="description" value="{{ $service->description }}" class="form-control form-control-lg"
-                        type="text" placeholder="Service Description">
+                    <div class="form-group">
+                        <label for="title">Package Title</label>
+                        <div class="input-group">
+                            <input name="title" id="title" value="{{ $package->title }}"
+                                class="form-control form-control-lg" type="text" placeholder="Package Title">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="detail">Detail</label>
+                        <div class="input-group">
+                            <textarea style="width: 100%;" id="summernote" name="detail"
+                                class="form-control form-control-lg">{{ $package->detail }}</textarea>
 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <div class="input-group">
+                            <input name="location" id="location" value="{{ $package->location }}"
+                                class="form-control form-control-lg" type="text" placeholder="Package location">
+
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Duration</label>
+                        <div class="input-group">
+                            <input name="duration" value="{{ $package->duration }}" class="form-control form-control-lg"
+                                type="number" min="1" placeholder="7">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputFile">Guest Amount</label>
+                        <div class="input-group">
+                            <input name="guest" value="{{ $package->guest }}" class="form-control form-control-lg"
+                                type="number" min="1" placeholder="Guest Number, e.g 2">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputFile">Package Price</label>
+                        <div class="input-group">
+                            <input name="price" value="{{ $package->price }}" class="form-control form-control-lg"
+                                type="number" min="1" placeholder="Package Price">
+                        </div>
+                    </div>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -69,35 +109,33 @@
         <div class="col-md-4">
             <div class="card card-primary card-outline">
                 <div class="card-header">
-                    <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.services') }}</h4>
+                    <h4 class="float-left">{{ trans('global.action') }} {{ trans('menu.packages') }}</h4>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
                     <div class="form-group">
-                        <img class="info-box-icon" height="96" src="{{ url('storage/service/'.$service->image) }}"
-                            alt="{{ $service->image }}">
-                        <br>
-                        <label for="exampleInputFile">Upload Photo</label>
+                        <img class="img-thumbnail" src="{{ url('storage/package/'.$package->photo) }}"
+                            alt="{{ $package->photo }}">
+                        <label for="upload_file">Upload Photo</label>
                         <div class="input-group">
-                            <input type="hidden" name="old_image" value="{{ $service->image }}">
                             <div class="custom-file">
-                                <input name="image" type="file" class="custom-file-input" id="exampleInputFile">
-                                <label class="custom-file-label" for="exampleInputFile">Choose Image</label>
+                                <input type="hidden" name="old_image" value="{{ $package->photo }}">
+                                <input name="image" type="file" class="custom-file-input" id="upload_file">
+                                <label class="custom-file-label" for="upload_file">Choose Image</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputFile">Status</label>
+                        <label for="checkbox">Status</label>
                         <div class="input-group">
-                            <input type="checkbox" name="status" value="{{old('status')}}" data-bootstrap-switch
-                                data-off-color="danger" data-on-color="success" {{ $service->status==true?'checked':''
-                            }}>
+                            <input type="checkbox" id="checkbox" name="status" checked data-bootstrap-switch
+                                data-off-color="danger" data-on-color="success">
                         </div>
                     </div>
                     <br>
 
                     <input type="submit" class="btn btn-primary" value="Save">
-                    <a href="{{ route('service.index') }}" class="btn btn-danger">Cancel</a>
+                    <a href="{{ route('package.index') }}" class="btn btn-danger">Cancel</a>
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -132,6 +170,28 @@
 <!-- dropzonejs -->
 <script src="{{ asset('admin_assets') }}/plugins/dropzone/min/dropzone.min.js"></script>
 
+{{-- Summernote --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+
+<script>
+    $('#summernote').summernote({
+    placeholder: 'Detail your package',
+    tabsize: 4,
+    // width:100%,
+    width: 1050,
+    height: 400,
+    // toolbar: [
+    //       ['style', ['style']],
+    //       ['font', ['strikethrough', 'superscript', 'subscript']],
+    //       ['font', ['bold', 'underline', 'clear']],
+    //       ['color', ['color']],
+    //       ['para', ['ul', 'ol', 'paragraph']],
+    //       ['table', ['table']],
+    //       ['insert', ['link', 'picture', 'video']],
+    //       ['view', ['fullscreen', 'codeview', 'help']]
+    //     ]
+  });
+</script>
 
 <script>
     $(function () {    

@@ -66,14 +66,14 @@ Service Management
                             alt="{{ $row->photo }}">
                     </td>
                     <td class="align-middle">
-                        <form action="{{ route('service.destroy',$row->id) }}" method="POST">
-                            <a class="btn btn-info" href="{{ route('service.show',$row->id) }}"><i
+                        <form action="{{ route('package.destroy',$row->id) }}" method="POST">
+                            <a class="btn btn-info" href="{{ route('package.show',$row->id) }}"><i
                                     class="fa fa-eye"></i></a>
-                            <a class="btn btn-primary" href="{{ route('service.edit',$row->id) }}"><i
+                            <a class="btn btn-primary" href="{{ route('package.edit',$row->id) }}"><i
                                     class="fa fa-edit"></i></a>
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger" show_confirm" data-toggle="tooltip"
+                            <button type="submit" class="btn btn-danger show_confirm" data-toggle="tooltip"
                                 title='Delete'><i class="fa fa-trash"></i></button>
                         </form>
                     </td>
@@ -143,7 +143,7 @@ Service Management
          var name = $(this).data("name");
          event.preventDefault();
          swal({
-             title: `Are you sure you want to delete this record?`,
+             title: `Do you want to delete?`,
              text: "If you delete this, it will be gone forever.",
              icon: "warning",
              buttons: true,

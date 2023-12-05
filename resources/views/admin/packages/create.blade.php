@@ -21,6 +21,9 @@
 <!-- Theme style -->
 <link rel="stylesheet" href="{{ asset('admin_assets') }}/dist/css/adminlte.min.css">
 
+{{-- Summer Note --}}
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
 @endpush
 @push('content_header')
 <section class="content-header">
@@ -52,15 +55,35 @@
         </div>
         <!-- /.card-header -->
         <div class="card-body">
-          <input name="title" class="form-control form-control-lg" type="text" placeholder="Package Title">
-          <br>
-          <input name="detail" class="form-control form-control-lg" type="text" placeholder="Package Detail">
-          <br>
-          <input name="location" class="form-control form-control-lg" type="text" placeholder="Package location">
-          <br>
-          <input name="duration" class="form-control form-control-lg" type="number" min="1"
-            placeholder="Package duration">
-          <br>
+          <div class="form-group">
+            <label for="title">Title</label>
+            <div class="input-group">
+              <input name="title" class="form-control form-control-lg" type="text" placeholder="Package Title">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="detail">Detail</label>
+            <div class="input-group">
+              <textarea style="width: 100%;" id="summernote" name="detail"
+                class="form-control form-control-lg"></textarea>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Location</label>
+            <div class="input-group">
+              <input name="location" id="location" class="form-control form-control-lg" type="text"
+                placeholder="Package location">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="location">Duration</label>
+            <div class="input-group">
+              <input name="duration" class="form-control form-control-lg" type="number" min="1" placeholder="Duration">
+            </div>
+          </div>
+
           <div class="form-group">
             <label for="exampleInputFile">Guest Amount</label>
             <div class="input-group">
@@ -143,13 +166,33 @@
 <!-- dropzonejs -->
 <script src="{{ asset('admin_assets') }}/plugins/dropzone/min/dropzone.min.js"></script>
 
+{{-- Summernote --}}
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 
 <script>
-  $(function () {    
-      $("input[data-bootstrap-switch]").each(function(){
-        $(this).bootstrapSwitch('state', $(this).prop('checked'));
-      })
-  
-    })  
+  $('#summernote').summernote({
+    placeholder: 'Detail your package',
+    tabsize: 4,
+    // width:100%,
+    width: 1050,
+    height: 400,
+    // toolbar: [
+    //       ['style', ['style']],
+    //       ['font', ['strikethrough', 'superscript', 'subscript']],
+    //       ['font', ['bold', 'underline', 'clear']],
+    //       ['color', ['color']],
+    //       ['para', ['ul', 'ol', 'paragraph']],
+    //       ['table', ['table']],
+    //       ['insert', ['link', 'picture', 'video']],
+    //       ['view', ['fullscreen', 'codeview', 'help']]
+    //     ]
+  });
+</script>
+<script>
+  $(function () {
+    $("input[data-bootstrap-switch]").each(function(){
+    $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+  })
 </script>
 @endpush
