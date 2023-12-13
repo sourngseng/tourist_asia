@@ -52,3 +52,29 @@ Route::get('send-sms', [NexmoSMSController::class, 'index']);
 **Website**
 
 -   https://dashboard.nexmo.com/getting-started/sms
+
+**Install Flag**
+
+-   https://github.com/MohmmedAshraf/blade-flags
+-   https://github.com/Monarobase/country-list
+-   Installation
+
+        ```
+        composer require outhebox/blade-flags
+
+        ```
+
+        ```
+        php artisan vendor:publish --tag=blade-flags-config
+        ```
+        - How to use:
+        ```
+        <x-flag-country-br />
+            <x-flag-country-cn />
+            <x-flag-country-gb />
+            <x-flag-country-ru />
+            <x-flag-country-us />
+        ```
+        ```
+        <x-flag-country-us class="w-6 h-6"/>
+        ```

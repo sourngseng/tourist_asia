@@ -12,7 +12,9 @@ class PackageController extends Controller
 {
     public function index(){
         $data['packages']=Package::get();
+        // $package=Package::get();
         
+        // return view('admin.packages.list',compact('packages'));
         return view('admin.packages.list',$data);
     }
     public function create(){
@@ -61,7 +63,7 @@ class PackageController extends Controller
     public function edit(Package $package)
     {
         // dd($package->id);
-        $data['package']=Package::findOrFail($package->id);
+        $data['package']=Package::findOrFail($package->id);        
         return view('admin.packages.edit',$data);
     }
     public function show(Package $package)
@@ -136,7 +138,6 @@ class PackageController extends Controller
                         Storage::disk('public')->delete("package/{$package->image}");
                     }
                 }
-
                 $package->delete();
 
                 // return response()->json([

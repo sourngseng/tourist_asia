@@ -52,6 +52,7 @@ Service Management
                 </tr>
             </thead>
             <tbody>
+                {{-- @dd($packages) --}}
                 @foreach ($packages as $row)
                 <tr>
                     <td>{{ $row->id }}</td>

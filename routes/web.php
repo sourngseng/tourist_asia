@@ -83,6 +83,7 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
 // All Normal Users Routes List
 Route::middleware(['auth','user-access:user'])->group(function(){
     Route::get('/home',[HomeController::class,'index'])->name('home');
+    Route::resource('service',ServiceController::class);
 });
 
 
@@ -108,14 +109,17 @@ Route::get('admin-create',function(){
 
 
 Route::get('send-sms', [NotificationController::class, 'sendSmsNotificaition']);
-
-
 Route::get('auth_sample',function(){
     return view('auth.auth_master');
 });
 
 
 
+Route::get('/countries', function()
+{
+    // dd(Countries::getList('km', 'json'));
+	return Countries::getList('en', 'json');
+});
 
 
 

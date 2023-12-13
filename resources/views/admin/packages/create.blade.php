@@ -176,17 +176,21 @@
     // width:100%,
     width: 1050,
     height: 400,
-    // toolbar: [
-    //       ['style', ['style']],
-    //       ['font', ['strikethrough', 'superscript', 'subscript']],
-    //       ['font', ['bold', 'underline', 'clear']],
-    //       ['color', ['color']],
-    //       ['para', ['ul', 'ol', 'paragraph']],
-    //       ['table', ['table']],
-    //       ['insert', ['link', 'picture', 'video']],
-    //       ['view', ['fullscreen', 'codeview', 'help']]
-    //     ]
+    toolbar: [
+          ['style', ['style']],
+          ['font', ['strikethrough', 'superscript', 'subscript']],
+          ['font', ['bold', 'underline', 'clear']],
+          ['fontname', ['fontname']],
+          ['fontsize', ['fontsize']],
+          ['color', ['color']],
+          ['para', ['ul', 'ol', 'paragraph']],
+          ['table', ['table']],
+          ['insert', ['link', 'picture', 'video']],
+          ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+        
   });
+  
 </script>
 <script>
   $(function () {
