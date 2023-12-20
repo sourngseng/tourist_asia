@@ -72,8 +72,12 @@
           <div class="form-group">
             <label for="location">Location</label>
             <div class="input-group">
-              <input name="location" id="location" class="form-control form-control-lg" type="text"
-                placeholder="Package location">
+              <select class="form-control" id="location" name="location">
+                @foreach ($provinces as $item)
+                <option value="{{ $item->id }}">{{ $item->khmer_name }}-{{ $item->name }}</option>
+                @endforeach
+              </select>
+
             </div>
           </div>
 

@@ -53,13 +53,14 @@ Service Management
             </thead>
             <tbody>
                 {{-- @dd($packages) --}}
+                {{-- @dd($packages) --}}
                 @foreach ($packages as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
                     <td>
                         <?php echo $row->title ?>
                     </td>
-                    <td>{{ $row->location }}</td>
+                    <td>{{ $row->khmer_name }}</td>
                     <td>{{ $row->duration }}</td>
                     <td>{{ $row->guest }}</td>
                     <td>

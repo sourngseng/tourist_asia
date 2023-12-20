@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Package;
+use App\Models\Province;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -11,14 +12,18 @@ use Log;
 class PackageController extends Controller
 {
     public function index(){
-        $data['packages']=Package::get();
+        // $data['packages']=Package::get();
+        $data['packages']=Package::join('provinces', 'provinces.id', '=', 'packages.province_id')
+        // ->join('city', 'city.state_id', '=', 'state.state_id')
+        ->get(['provinces.khmer_name','provinces.name as name','packages.*']);
         // $package=Package::get();
         
         // return view('admin.packages.list',compact('packages'));
         return view('admin.packages.list',$data);
     }
     public function create(){
-        return view('admin.packages.create');
+        $data['provinces']=Province::get();
+        return view('admin.packages.create',$data);
     }
     public function store(Request $request){
 
@@ -40,6 +45,7 @@ class PackageController extends Controller
                 'title'=>$request->title,
                 'slug'=>Str::slug($request->title),
                 'detail'=>$request->detail,
+                'province_id'=>$request->location,
                 'location'=>$request->location,
                 'duration'=>$request->duration,
                 'guest'=>$request->guest,
@@ -100,7 +106,8 @@ class PackageController extends Controller
                 $package->title=$request->title;
                 $package->slug=Str::slug($request->title);                
                 $package->detail=$request->detail;
-                $package->location=$request->location;
+                $package->location_id=$request->location;
+                $package->province_id=$request->location;
                 $package->duration=$request->duration;
                 $package->guest=$request->guest;
                 $package->price=$request->price;
@@ -111,7 +118,8 @@ class PackageController extends Controller
                 $package->title=$request->title;
                 $package->slug=Str::slug($request->title);                
                 $package->detail=$request->detail;
-                $package->location=$request->location;
+                $package->location_id=$request->location;
+                $package->province_id=$request->location;
                 $package->duration=$request->duration;
                 $package->guest=$request->guest;
                 $package->price=$request->price;

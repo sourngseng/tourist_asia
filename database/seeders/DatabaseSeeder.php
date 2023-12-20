@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Database\Seeders\CountriesSeeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -20,5 +21,10 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
         $this->call(CountriesSeeder::class);
+
+        $path = 'database/seeders/provinces.sql';
+        DB::unprepared(file_get_contents($path));
+        $this->command->info('Province table seeded!');
+        
     }
 }

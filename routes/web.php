@@ -83,7 +83,7 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
 // All Normal Users Routes List
 Route::middleware(['auth','user-access:user'])->group(function(){
     Route::get('/home',[HomeController::class,'index'])->name('home');
-    Route::resource('service',ServiceController::class);
+    // Route::resource('service',ServiceController::class);
 });
 
 
@@ -91,6 +91,7 @@ Route::middleware(['auth','user-access:user'])->group(function(){
 
 Route::middleware(['auth','user-access:manager'])->group(function(){
     Route::get('/manager/home',[HomeController::class,'managerHome'])->name('manager.home');
+    // Route::resource('service',ServiceController::class);
 });
 
 
