@@ -6,7 +6,7 @@
             <h1 class="mb-5">Awesome Packages</h1>
         </div>
         <div class="row g-4 justify-content-center">
-
+            {{-- @dd($packages) --}}
             @foreach ($packages as $item)
             <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
                 <div class="package-item">
@@ -15,11 +15,11 @@
                     </div>
                     <div class="d-flex border-bottom">
                         <small class="flex-fill text-center border-end py-2"><i
-                                class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->location }}</small>
+                                class="fa fa-map-marker-alt text-primary me-2"></i>{{ $item->khmer_name }}</small>
                         <small class="flex-fill text-center border-end py-2"><i
-                                class="fa fa-calendar-alt text-primary me-2"></i>3 days</small>
+                                class="fa fa-calendar-alt text-primary me-2"></i>{{ $item->duration }} days</small>
                         <small class="flex-fill text-center py-2"><i class="fa fa-user text-primary me-2"></i>{{
-                            $item->quest }}
+                            $item->guest }}
                             Person</small>
                     </div>
                     <div class="text-center p-4">

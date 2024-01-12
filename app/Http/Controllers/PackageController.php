@@ -69,7 +69,8 @@ class PackageController extends Controller
     public function edit(Package $package)
     {
         // dd($package->id);
-        $data['package']=Package::findOrFail($package->id);        
+        $data['package']=Package::findOrFail($package->id);  
+        $data['provinces']=Province::get();      
         return view('admin.packages.edit',$data);
     }
     public function show(Package $package)
@@ -106,8 +107,8 @@ class PackageController extends Controller
                 $package->title=$request->title;
                 $package->slug=Str::slug($request->title);                
                 $package->detail=$request->detail;
-                $package->location_id=$request->location;
-                $package->province_id=$request->location;
+                $package->location=$request->province_id;
+                $package->province_id=$request->province_id;
                 $package->duration=$request->duration;
                 $package->guest=$request->guest;
                 $package->price=$request->price;
@@ -118,8 +119,8 @@ class PackageController extends Controller
                 $package->title=$request->title;
                 $package->slug=Str::slug($request->title);                
                 $package->detail=$request->detail;
-                $package->location_id=$request->location;
-                $package->province_id=$request->location;
+                $package->location=$request->province_id;
+                $package->province_id=$request->province_id;
                 $package->duration=$request->duration;
                 $package->guest=$request->guest;
                 $package->price=$request->price;

@@ -22,6 +22,7 @@
 <link rel="stylesheet" href="{{ asset('admin_assets') }}/dist/css/adminlte.min.css">
 {{-- Summer Note --}}
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+
 @endpush
 @push('content_header')
 <section class="content-header">
@@ -64,22 +65,18 @@
                     <div class="form-group">
                         <label for="detail">Detail</label>
                         <div class="input-group">
-                            <textarea style="width: 100%;" id="summernote" name="detail"
-                                class="form-control form-control-lg">{{ $package->detail }}</textarea>
+                            {{-- <textarea style="width: 100%;" id="summernote" name="detail"
+                                class="form-control form-control-lg">{{ $package->detail }}</textarea> --}}
 
+                            {!! $package->detail !!}
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="location">Location</label>
                         <div class="input-group">
-                            <select class="form-control" id="location" name="province_id">
-                                @foreach ($provinces as $item)
-                                <option {{ $package->province_id == $item->id ? 'selected' : '' }} value="{{ $item->id
-                                    }}">{{
-                                    $item->khmer_name }}-{{ $item->name }}</option>
-                                @endforeach
-                            </select>
+                            <input name="location" id="location" value="{{ $package->location }}"
+                                class="form-control form-control-lg" type="text" placeholder="Package location">
 
                         </div>
                     </div>
@@ -197,7 +194,6 @@
     //     ]
   });
 </script>
-
 <script>
     $(function () {    
       $("input[data-bootstrap-switch]").each(function(){

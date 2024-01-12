@@ -14,7 +14,9 @@ class FrontPageController extends Controller
     {
         $data['services']=Service::get();
         $data['guides']=Guide::where('status','=',true)->get();
-        $data['packages']=Package::where('status','=',true)->get();
+        $data['packages']=Package::join('provinces', 'provinces.id', '=', 'packages.province_id')
+        // ->join('city', 'city.state_id', '=', 'state.state_id')
+        ->get(['provinces.khmer_name','provinces.name as name','packages.*']);
         // dd($data['services']);
         return view('front_home',$data);
     }
@@ -33,7 +35,11 @@ class FrontPageController extends Controller
 
     public function packages(){
         $data['title']="Our Packages";
-        $data['packages']=Package::where('status','=',true)->get();
+        // $data['packages']=Package::where('status','=',true)->get();
+        $data['packages']=Package::join('provinces', 'provinces.id', '=', 'packages.province_id')
+        // ->join('city', 'city.state_id', '=', 'state.state_id')
+        ->get(['provinces.khmer_name','provinces.name as name','packages.*']);
+
         return view('front-packages',$data);
     }
     public function packages_detail($slug){

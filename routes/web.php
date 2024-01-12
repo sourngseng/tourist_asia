@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GuideController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Session;
@@ -76,6 +77,7 @@ Route::middleware(['auth','user-access:admin'])->group(function(){
         // Route::post('service/store',[ServiceController::class,'store'])->name('admin.service.store');    
         Route::resource('service',ServiceController::class);
         Route::resource('package',PackageController::class);
+        Route::resource('guide',GuideController::class);
     });
 });
 
