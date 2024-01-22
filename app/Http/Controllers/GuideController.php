@@ -17,7 +17,7 @@ class GuideController extends Controller
         // $data['guides']=Guide::get();
         $data['guides']=Guide::join('users', 'users.id', '=', 'guides.user_id')
         // ->join('city', 'city.state_id', '=', 'state.state_id')
-        ->get(['users.type','users.name as name','guides.*']);
+        ->get(['users.type','users.name as uname','users.email as uemail','guides.*']);
         // $package=Guide::get();
         
         // return view('admin.teams.list',compact('guides'));

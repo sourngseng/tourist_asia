@@ -14,12 +14,12 @@ Service Management
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>{{ trans('menu.packages') }}</h1>
+                <h1>{{ trans('menu.guides') }}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="{{ route('admin.home') }}">{{ trans('menu.home') }}</a></li>
-                    <li class="breadcrumb-item active">{{ trans('menu.packages') }}</li>
+                    <li class="breadcrumb-item active">{{ trans('menu.guides') }}</li>
                 </ol>
             </div>
         </div>
@@ -31,7 +31,7 @@ Service Management
 
 <div class="card card-primary card-outline">
     <div class="card-header">
-        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.packages') }}</h3>
+        <h3 class="float-left">{{ trans('global.list') }} {{ trans('menu.guides') }}</h3>
 
         <a class="btn btn-primary float-right" href="{{ route('guide.create') }}">
             <i class="fas fa-plus"></i> {{ trans('global.add') }}
@@ -43,10 +43,10 @@ Service Management
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Title</th>
-                    <th>Location</th>
-                    <th>Duration</th>
-                    <th>Guest</th>
+                    <th>Full Name</th>
+                    <th>Position</th>
+                    <th>Phone</th>
+                    <th>Email</th>
                     <th>Image</th>
                     <th>Action</th>
                 </tr>
@@ -54,6 +54,7 @@ Service Management
             <tbody>
                 {{-- @dd($packages) --}}
                 {{-- @dd($packages) --}}
+                {{-- @dd($guides) --}}
                 @foreach ($guides as $row)
                 <tr>
                     <td>{{ $row->id }}</td>
@@ -62,10 +63,10 @@ Service Management
                     </td>
                     <td>{{ $row->position }}</td>
                     <td>{{ $row->phone }}</td>
-                    <td>{{ $row->email }}</td>
+                    <td>{{ $row->uemail }}</td>
                     <td>
-                        <img class="info-box-icon" height="32" src="{{ url('storage/team/'.$row->photo) }}"
-                            alt="{{ $row->photo }}">
+                        <img class="img-thumbnail rounded-circle" height="46"
+                            src="{{ url('storage/team/'.$row->photo) }}" alt="{{ $row->photo }}">
                     </td>
                     <td class="align-middle">
                         <form action="{{ route('package.destroy',$row->id) }}" method="POST">

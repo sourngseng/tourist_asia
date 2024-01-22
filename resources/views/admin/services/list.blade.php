@@ -61,8 +61,8 @@ Service Management
                     </td>
                     <td>{{ $row->description }}</td>
                     <td>
-                        <img class="info-box-icon" height="32" src="{{ url('storage/service/'.$row->image) }}"
-                            alt="{{ $row->image }}">
+                        <img class="img-thumbnail rounded-circle" height="46" width="46"
+                            src="{{ url('storage/service/'.$row->image) }}" alt="{{ $row->image }}">
                     </td>
                     <td class="align-middle">
                         <form action="{{ route('service.destroy',$row->id) }}" method="POST">

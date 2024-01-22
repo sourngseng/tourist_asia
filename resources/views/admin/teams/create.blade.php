@@ -156,8 +156,8 @@
 
           <br>
 
-          <input type="submit" class="btn btn-primary" value="Save">
-          <a href="{{ route('guide.index') }}" class="btn btn-danger">Cancel</a>
+          <input type="submit" class="btn btn-primary btn-block" value="Save">
+          <a href="{{ route('guide.index') }}" class="btn btn-danger btn-block">Cancel</a>
         </div>
         <!-- /.card-body -->
       </div>
